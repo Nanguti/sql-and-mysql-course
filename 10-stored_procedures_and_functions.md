@@ -40,3 +40,4 @@ IN parameters are used to pass values into the procedure.
 The procedure deducts money from one account and adds it to another.
 Calling a Stored Procedure
 Once the procedure is created, you can call it using the CALL statement:
+CALL TransferFunds(1, 2, 100.00);
