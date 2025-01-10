@@ -4,10 +4,10 @@
 $host = "localhost";
 $user = "root";
 $password = "";
-$dbname = "tutorial_db";
+$dbname = "sql_tut";
 
 // Create a new MySQLi connection
-$conn = new mysqli($host, $user, $password, $dbname);
+$conn = new mysqli(hostname: $host, username: $user, password: $password, database: $dbname);
 
 // Check the connection
 if ($conn->connect_error) {
@@ -22,11 +22,11 @@ echo "Connected successfully to MySQL server." . PHP_EOL;
 $sql = "SELECT users.id, users.username, orders.order_date, orders.amount 
         FROM users 
         INNER JOIN orders ON users.id = orders.user_id";
-$result = $conn->query($sql);
+$result = $conn->query(query: $sql);
 if ($result->num_rows > 0) {
     echo "Inner Join Results:" . PHP_EOL;
     while ($row = $result->fetch_assoc()) {
-        print_r($row);
+        print_r(value: $row);
     }
 }
 
@@ -35,11 +35,11 @@ if ($result->num_rows > 0) {
 $sql = "SELECT users.id, users.username, orders.order_date, orders.amount 
         FROM users 
         LEFT JOIN orders ON users.id = orders.user_id";
-$result = $conn->query($sql);
+$result = $conn->query(query: $sql);
 if ($result->num_rows > 0) {
     echo "Left Join Results:" . PHP_EOL;
     while ($row = $result->fetch_assoc()) {
-        print_r($row);
+        print_r(value: $row);
     }
 }
 
@@ -48,11 +48,11 @@ if ($result->num_rows > 0) {
 $sql = "SELECT users.id, users.username, orders.order_date, orders.amount 
         FROM users 
         RIGHT JOIN orders ON users.id = orders.user_id";
-$result = $conn->query($sql);
+$result = $conn->query(query: $sql);
 if ($result->num_rows > 0) {
     echo "Right Join Results:" . PHP_EOL;
     while ($row = $result->fetch_assoc()) {
-        print_r($row);
+        print_r(value: $row);
     }
 }
 

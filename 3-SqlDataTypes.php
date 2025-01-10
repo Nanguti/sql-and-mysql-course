@@ -5,10 +5,10 @@
 $host = "localhost";
 $user = "root";
 $password = "";
-$dbname = "tutorial_db";
+$dbname = "sql_tut";
 
 // Create a new MySQLi connection
-$conn = new mysqli($host, $user, $password);
+$conn = new mysqli(hostname: $host, username: $user, password: $password, database: $dbname);
 
 // Check the connection
 if ($conn->connect_error) {
@@ -25,11 +25,11 @@ $sql = "CREATE TABLE IF NOT EXISTS data_types_demo (
             id INT AUTO_INCREMENT PRIMARY KEY,       -- Numeric type: INT for primary key
             name VARCHAR(50) NOT NULL,              -- String type: VARCHAR for variable-length text
             description TEXT,                       -- String type: TEXT for large text data
-            price DECIMAL(10, 2),                   -- Numeric type: DECIMAL for exact values (e.g., money)
+            price DECIMAL(10, 2),                   -- Numeric type: DECIMAL for exact values
             rating FLOAT,                           -- Numeric type: FLOAT for approximate values
-            created_at DATETIME,                    -- Date/Time type: DATETIME for specific date and time
-            updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-                                                 -- Date/Time type: TIMESTAMP with automatic update
+            created_at DATETIME,                    -- Date/Time type: DATETIME for specific datetime
+            updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
+            ON UPDATE CURRENT_TIMESTAMP -- Date/Time type: TIMESTAMP with automatic update
         )";
 
 if ($conn->query($sql) === TRUE) {

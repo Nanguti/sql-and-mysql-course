@@ -48,18 +48,25 @@
 ### **macOS**
 
 1. Install Homebrew (if not installed):
+
    ```bash
    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
    ```
+
 2. Use Homebrew to install MySQL:
+
    ```bash
    brew install mysql
    ```
+
 3. Start the MySQL service:
+
    ```bash
    brew services start mysql
    ```
+
 4. Secure the installation:
+
    ```bash
    mysql_secure_installation
    ```
@@ -67,18 +74,25 @@
 ### **Linux**
 
 1. Update your package list:
+
    ```bash
    sudo apt update
    ```
+
 2. Install MySQL:
+
    ```bash
    sudo apt install mysql-server
    ```
+
 3. Secure the installation:
+
    ```bash
    sudo mysql_secure_installation
    ```
+
 4. Test installation:
+
    ```bash
    mysql -u root -p
    ```
@@ -106,15 +120,21 @@ A web-based application for managing MySQL databases.
 
 - Directly interact with MySQL Server via terminal commands.
 - Examples:
+
   - Log in to MySQL:
+
     ```bash
     mysql -u root -p
     ```
+
   - Create a database:
+
     ```sql
     CREATE DATABASE example_db;
     ```
+
   - Show databases:
+
     ```sql
     SHOW DATABASES;
     ```

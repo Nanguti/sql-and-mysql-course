@@ -1,7 +1,3 @@
-# Content for Stored Procedures and Functions tutorial in markdown format
-
-stored_procedures_markdown = """
-
 # 10. Stored Procedures and Functions in MySQL
 
 Stored procedures and functions are essential for encapsulating business logic directly in the database. They allow for the reusability of code, better performance (as operations are executed on the server), and improved security by controlling access to the database.

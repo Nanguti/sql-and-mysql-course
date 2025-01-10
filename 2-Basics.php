@@ -5,28 +5,26 @@
 $host = "localhost";
 $user = "root";
 $password = "";
-$dbname = "tutorial_db";
+$dbname = "sql_tut";
 
 // Create a new MySQLi connection
-$conn = new mysqli($host, $user, $password);
+$conn = new mysqli($host, username: $user, password: $password, database: $dbname);
 
 // Check the connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 echo "Connected successfully to MySQL server." . PHP_EOL;
-
 // Step 1: Data Definition Language (DDL)
 
 // Creating a new database
 // The following code creates a database named 'tutorial_db' if it doesn't already exist.
-$sql = "CREATE DATABASE IF NOT EXISTS tutorial_db";
-if ($conn->query($sql) === TRUE) {
-    echo "Database 'tutorial_db' created successfully." . PHP_EOL;
+$sql = "CREATE DATABASE IF NOT EXISTS sql_tut";
+if ($conn->query($sql) == TRUE) {
+    echo "Database created successfully" . PHP_EOL;
 } else {
-    echo "Error creating database: " . $conn->error . PHP_EOL;
+    echo "Unable to create the database" . PHP_EOL;
 }
-
 // Switching to the created database
 // Select the 'tutorial_db' database to execute subsequent commands within it.
 $conn->select_db($dbname);
@@ -40,7 +38,7 @@ $sql = "CREATE TABLE IF NOT EXISTS users (
             phone VARCHAR(15),
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )";
-if ($conn->query($sql) === TRUE) {
+if ($conn->query(query: $sql) === TRUE) {
     echo "Table 'users' created successfully." . PHP_EOL;
 } else {
     echo "Error creating table: " . $conn->error . PHP_EOL;
@@ -50,18 +48,15 @@ if ($conn->query($sql) === TRUE) {
 
 // Inserting data into the table
 // Insert sample records into the 'users' table.
-$sql = "INSERT INTO users (name, email, phone) VALUES 
-        ('John Doe', 'john.doe@example.com', '1234567890'),
-        ('Jane Smith', 'jane.smith@example.com', '0987654321')";
+$sql = "INSERT INTO users(name, email, phone) VALUES ('Kevin Wanyonyi', 'kevin@gmail.com', '0726076333'), ('Nanguti Wafula Wanyonyi', 'wafula@xmail.com', '0724076334')";
 if ($conn->query($sql) === TRUE) {
     echo "Records inserted successfully." . PHP_EOL;
 } else {
     echo "Error inserting records: " . $conn->error . PHP_EOL;
 }
-
 // Updating data in the table
 // Update the phone number for the user named 'John Doe'.
-$sql = "UPDATE users SET phone = '1122334455' WHERE name = 'John Doe'";
+$sql = "UPDATE users SET email = 'updatedemail@gmail.com' WHERE id = 1";
 if ($conn->query($sql) === TRUE) {
     echo "Record updated successfully." . PHP_EOL;
 } else {
@@ -70,7 +65,7 @@ if ($conn->query($sql) === TRUE) {
 
 // Deleting data from the table
 // Delete the record for the user named 'Jane Smith'.
-$sql = "DELETE FROM users WHERE name = 'Jane Smith'";
+$sql = "DELETE FROM users WHERE name = 'Kevin Wanyonyi'";
 if ($conn->query($sql) === TRUE) {
     echo "Record deleted successfully." . PHP_EOL;
 } else {
@@ -94,10 +89,10 @@ if ($result->num_rows > 0) {
 
 // Using WHERE clause
 // Filter records where the name contains 'John'.
-$sql = "SELECT * FROM users WHERE name LIKE '%John%'";
+$sql = "SELECT * FROM users WHERE name LIKE '%Kevin%'";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
-    echo "Filtered Users (name contains 'John'):" . PHP_EOL;
+    echo "Filtered Users (name contains 'Kevin'):" . PHP_EOL;
     while ($row = $result->fetch_assoc()) {
         print_r($row);
     }

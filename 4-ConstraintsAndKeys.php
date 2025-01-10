@@ -4,10 +4,10 @@
 $host = "localhost";
 $user = "root";
 $password = "";
-$dbname = "tutorial_db";
+$dbname = "sql_tut";
 
 // Create a new MySQLi connection
-$conn = new mysqli($host, $user, $password);
+$conn = new mysqli(hostname: $host, username: $user, password: $password, database: $dbname);
 
 // Check the connection
 if ($conn->connect_error) {
@@ -16,7 +16,7 @@ if ($conn->connect_error) {
 echo "Connected successfully to MySQL server." . PHP_EOL;
 
 // Select the database
-$conn->select_db($dbname);
+$conn->select_db(database: $dbname);
 
 // Step 1: Creating tables with constraints and keys
 
@@ -28,7 +28,7 @@ $sql = "CREATE TABLE IF NOT EXISTS users (
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP -- DEFAULT value for timestamps
         )";
 
-if ($conn->query($sql) === TRUE) {
+if ($conn->query(query: $sql) === TRUE) {
     echo "Table 'users' created successfully." . PHP_EOL;
 } else {
     echo "Error creating 'users' table: " . $conn->error . PHP_EOL;
@@ -44,7 +44,7 @@ $sql = "CREATE TABLE IF NOT EXISTS posts (
             FOREIGN KEY (user_id) REFERENCES users(id) -- FOREIGN KEY constraint
         )";
 
-if ($conn->query($sql) === TRUE) {
+if ($conn->query(query: $sql) === TRUE) {
     echo "Table 'posts' created successfully." . PHP_EOL;
 } else {
     echo "Error creating 'posts' table: " . $conn->error . PHP_EOL;
@@ -53,10 +53,10 @@ if ($conn->query($sql) === TRUE) {
 // Step 2: Demonstrating constraints with sample data
 
 // Inserting data into 'users' table
-$sql = "INSERT INTO users (username, email) VALUES 
+$sql = "INSERT INTO users (name, email) VALUES 
         ('john_doe', 'john.doe@example.com'),
         ('jane_doe', 'jane.doe@example.com')";
-if ($conn->query($sql) === TRUE) {
+if ($conn->query(query: $sql) === TRUE) {
     echo "Sample users inserted successfully." . PHP_EOL;
 } else {
     echo "Error inserting users: " . $conn->error . PHP_EOL;
@@ -66,7 +66,7 @@ if ($conn->query($sql) === TRUE) {
 $sql = "INSERT INTO posts (user_id, title, content) VALUES 
         (1, 'First Post', 'This is the content of the first post.'),
         (2, 'Second Post', 'Content of the second post.')";
-if ($conn->query($sql) === TRUE) {
+if ($conn->query(query: $sql) === TRUE) {
     echo "Sample posts inserted successfully." . PHP_EOL;
 } else {
     echo "Error inserting posts: " . $conn->error . PHP_EOL;
